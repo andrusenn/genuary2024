@@ -7,16 +7,11 @@ const { PI, sin, cos } = Math;
 const random = createRandom();
 const noise = createNoise3D(random);
 const particles = [];
-$.init(
-    (o) => {
-        // $.bg('#fff');
-    },
-    {
-        w: 1200,
-        h: 1200,
-        color: '#000',
-    },
-);
+$.init((o) => {}, {
+    w: 1200,
+    h: 1200,
+    color: '#000',
+});
 $.animate((o) => {
     //
     if ($.frameCount < 200) {
@@ -63,16 +58,4 @@ $.animate((o) => {
             });
         });
     }
-    // const i = $.getImage(0, 0, $.w, $.h);
-    // // $.cx.save();
-    // $.cx.translate($.w / 2, $.h / 2);
-    // $.rotate(0.001);
-    // $.scale(0.999, 0.999);
-    // $.cx.translate(-$.w / 2, -$.h / 2);
-    // $.image(i, 0, 0);
-    //if ($.frameCount < 100) {
-    // for (let i = 0; i < 5; i++) {
-    //     $.point(random(0, $.w), random(0, $.h));
-    // }
-    //}
 }, 900);
