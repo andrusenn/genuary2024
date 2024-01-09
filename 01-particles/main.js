@@ -1,17 +1,22 @@
-import createNoise3D from './simplexN3D.mjs';
-import createRandom from './Random.mjs';
-import Particle from './Particle.mjs';
-import $ from './core.js';
+import createNoise3D from '../libs/simplexN3D.mjs';
+import createRandom from '../libs/Random.mjs';
+import Particle from '../libs/Particle.mjs';
+import $ from '../libs/core.js';
 
-const { PI, sin, cos } = Math;
+const { sin } = Math;
 const random = createRandom();
 const noise = createNoise3D(random);
 const particles = [];
-$.init((o) => {}, {
-    w: 1200,
-    h: 1200,
-    color: '#000',
-});
+$.init(
+    (o) => {
+        $.bg('#000');
+        $.stroke('#fff');
+    },
+    {
+        w: 1200,
+        h: 1200,
+    },
+);
 $.animate((o) => {
     //
     if ($.frameCount < 200) {
@@ -20,7 +25,7 @@ $.animate((o) => {
             const y = random(0, $.h);
             $.stroke(
                 'rgba(255,255,255,0.6)',
-                $.map(Math.sin($.frameCount * 0.01), -1, 1, 1, 3),
+                $.map(sin($.frameCount * 0.01), -1, 1, 1, 3),
             );
             $.point(x, y);
             particles.push(new Particle(x, y));
@@ -50,7 +55,7 @@ $.animate((o) => {
                 }
                 if (draw) {
                     const ssize = $.map(sin($.frameCount * 0.05), -1, 1, 1, ss);
-                    $.stroke('rgba(0,0,0,0.2)', ssize * 0);
+                    $.stroke('rgba(0,0,0,0.2)', ssize * 2);
                     $.point(x + ssize * 2, y + ssize * 2);
                     $.stroke('#fff', ssize);
                     $.point(x, y);

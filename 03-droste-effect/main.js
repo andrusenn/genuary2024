@@ -1,6 +1,6 @@
-import createNoise3D from './simplexN3D.mjs';
-import createRandom from './Random.mjs';
-import $ from './core.js';
+import createNoise3D from '../libs/simplexN3D.mjs';
+import createRandom from '../libs/Random.mjs';
+import $ from '../libs/core.js';
 
 const { PI, round } = Math;
 const random = createRandom();
@@ -12,6 +12,7 @@ let fspiral = [],
     scaleMult = 0.991;
 $.init(
     (o) => {
+        $.smooth(false);
         fspiral = [1, 2];
         for (let i = 0; i < 20; i++) {
             fspiral.push(
@@ -22,7 +23,6 @@ $.init(
     {
         w: 800,
         h: 800,
-        color: '#000',
     },
 );
 $.animate((o) => {
@@ -37,7 +37,6 @@ $.animate((o) => {
         //if (i % 2 === 0) {
         $.save();
         const cell = w * 0.1;
-        $.noStroke();
         for (let xx = 0; xx < w; xx += cell) {
             for (let yy = 0; yy < w; yy += cell) {
                 const n = noise(xx * 0.01, yy * 0.01, 1);

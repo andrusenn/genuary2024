@@ -12,7 +12,8 @@ export default class Particle {
         this.noise_size_x = 0.01;
         this.noise_size_y = 0.01;
         this.mult = 0.5;
-        this.amt = 300;
+        this.amt = 10;
+        this.data = {};
     }
     update(n) {
         this.noise = n(

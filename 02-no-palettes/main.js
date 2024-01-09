@@ -1,22 +1,23 @@
-import createNoise3D from './simplexN3D.mjs';
-import createRandom from './Random.mjs';
-import $ from './core.js';
+import createNoise3D from '../libs/simplexN3D.mjs';
+import createRandom from '../libs/Random.mjs';
+import $ from '../libs/core.js';
 
 const { PI, sin, cos } = Math;
 const random = createRandom();
 const noise = createNoise3D(random);
 let X = 0;
 let Y = 0;
-let CELL = 5;
+let CELL = 10;
 let ANG = 0;
 $.init(
     (o) => {
+        $.bg('#000');
+        $.noFill();
         ANG = random(0, PI / 2);
     },
     {
         w: 1200,
         h: 1200,
-        color: '#000',
     },
 );
 $.animate((o) => {
@@ -31,7 +32,7 @@ $.animate((o) => {
         if (X > $.w / 2) {
             a = $.snap(PI * n, PI / 4);
             a2 = $.snap(Y * 0.005 * n, PI / 4);
-            cr = $.map(n, -1, 1, 1, 5);
+            cr = $.map(n, -1, 1, 1, 20);
             ss = 3;
         }
         const r = $.map(cos(a1 + ANG) * sin(a2 + ANG), -1, 1, 0, 255);
